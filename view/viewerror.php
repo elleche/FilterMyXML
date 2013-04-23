@@ -1,10 +1,4 @@
-<?php
-
-    $errorCode = $_GET['err'];    
-    $mimeType = $_GET['mime'];
-    
-    define("UPLOAD_ERR_EMPTY", 5);
-    define("UPLOAD_ERR_NO_XML", 9);
+<?php 
     
     $uploadErrors = array(
     UPLOAD_ERR_OK         => 'There is no error, the file uploaded with success.',
@@ -18,27 +12,19 @@
     UPLOAD_ERR_EMPTY      => 'The file that you uploaded is empty.',
     UPLOAD_ERR_NO_XML     => 'The file that you uploaded did not contain valid XML code.'
     );  
-  
-    if ($errorCode != null)
-    {
-        $error = $uploadErrors[$errorCode];
-        
-        $mimeTypeError = '';
-        if($mimeType != null)
-        {
-            $mimeTypeError = 'The type of the uploaded file is '.$mimeType.'<br>';
-        }
-                
-        echo '<h1>Error</h1>'.
-              $error.'<br>'.
-              $mimeTypeError.
-             '<a href="uploadform.html">Click here to upload a new file.</a>';
-    }
-    else
-    {
-        //go back to uploadform
-        header('Location: uploadform.html');
-        exit;
-    }
-    
-?> 
+	
+	$errorDescription = $uploadErrors[$error->errorCode];
+?>
+<html>
+<head>
+	<title>FilterMyXML - Error</title>
+</head>
+<body>
+	<h1>Error</h1>
+		<p>
+			<?= $errorDescription ?>
+<?php if($error->mimeType != '') {?> </br>The type of the uploaded file is <?= $error->mimeType ?>. <?php } ?>
+        </p>
+        <a href="index.php?task=choose_file">Click here to upload a new file.</a>
+</body>
+</html>
