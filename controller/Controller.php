@@ -28,7 +28,8 @@ class Controller
 					$file = $model->getFile();				
 					if ($file->hasError())
 					{
-						$error = $file->getError();
+						$errorCode = $file->getErrorCode();
+						$fileMimeType = $file->getFileMimeType();
 						include 'view/viewerror.php';
 					}
 					else

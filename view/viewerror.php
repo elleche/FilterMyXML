@@ -13,7 +13,7 @@
     UPLOAD_ERR_NO_XML     => 'The file that you uploaded did not contain valid XML code.'
     );  
 	
-	$errorDescription = $uploadErrors[$error->errorCode];
+	$errorDescription = $uploadErrors[$errorCode];
 ?>
 <html>
 <head>
@@ -23,7 +23,7 @@
 	<h1>Error</h1>
 		<p>
 			<?= $errorDescription ?>
-<?php if($error->mimeType != '') {?> </br>The type of the uploaded file is <?= $error->mimeType ?>. <?php } ?>
+<?php if(isset($fileMimeType)) {?> </br>The type of the uploaded file is <?= $fileMimeType ?>. <?php } ?>
         </p>
         <a href="index.php?task=choose_file">Click here to upload a new file.</a>
 </body>
