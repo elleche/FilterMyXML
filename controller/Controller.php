@@ -1,6 +1,7 @@
 <?php 
 require_once('model/UploadModel.php');
 require_once('model/FilterModel.php');
+require_once('model/DownloadModel.php');
       
 class Controller 
 {  
@@ -62,6 +63,8 @@ class Controller
 			break;
 			
 			case 'download':
+				$model = new DownloadModel();
+				$xml = $model->getXML();
 				include 'view/downloadfile.php';
 				exit;
 			break;

@@ -1,6 +1,5 @@
 <?php
 
-	$xml = $_SESSION['xmlUniques'];
 	header("Cache-Control: public");
 	header("Content-Description: File Transfer");
 	header("Content-Disposition: attachment; filename=UniqueRecords.xml");
