@@ -4,7 +4,6 @@ require_once('model/File.php');
 class UploadModel 
 {
 	private $file;
-	private $fileError;
 	
 	function __construct($userFile)
 	{  

@@ -6,15 +6,23 @@ class FilterModel
 	private $field;
 	private $isUnique;
 	private $uniqueRecords;
+	private $recordsCount;
 	private $allFieldsStatus;
 	private $root;
+	private $result;
 	
 	function __construct($selectedField, $isFieldUnique)
 	{  					
-		$this->uniqueRecords = array();	
 		$this->field = $selectedField;
-		$this->isUnique = $isFieldUnique;			
+		$this->isUnique = $isFieldUnique;
+			
+		$this->result = array('doubles'=>0, 'uniques'=>0);	
+		$this->uniqueRecords = array();				
 		$this->allFieldsStatus = array();
+		
+		$this->recordsCount = 0;
+		if (isset($_SESSION['recordsCount'])) $this->recordsCount = $_SESSION['recordsCount'];
+		
 		//read
 		if (isset($_SESSION['fieldsState'])) $this->allFieldsStatus = $_SESSION['fieldsState'];	
 		//update
@@ -26,7 +34,6 @@ class FilterModel
 	
 	public function reCount()
 	{
-		$result = array('doubles'=>0, 'uniques'=>0);	
 		$noFieldSelected = (array_sum($this->allFieldsStatus) == 0);
 		if($noFieldSelected) 
 		{
@@ -37,7 +44,8 @@ class FilterModel
 		
 		//TODO check for errors SESSION ?
 		$this->root = simplexml_load_string($_SESSION['rootRecordAsXML']);
-		$allRecordsCount = $this->root->count();
+//		$allRecordsCount = $this->root->count();
+		$allRecordsCount = $this->recordsCount;
 		if( $allRecordsCount > 0 )
 		{
 			$allRecords = $this->root->children();

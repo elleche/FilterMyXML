@@ -55,10 +55,7 @@ class Controller
 						echo json_encode($result);
 						exit;
 					}
-					else echo json_encode('problem na POST');
-					exit;
 				}
-				else echo json_encode('problem na GET');
 				exit;
 			break;
 			
